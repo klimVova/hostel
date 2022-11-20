@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BlogController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\PostShowController;
@@ -20,6 +21,7 @@ use Inertia\Inertia;
 */
 
 Route::get('/', HomeController::class)->name('home');
+Route::get('/blog', BlogController::class)->name('blog');
 
 Route::get('/posts/{post}', PostShowController::class)->name('posts.show');
 
