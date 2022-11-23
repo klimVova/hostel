@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Inertia\Inertia;
 
 class UserController extends Controller
@@ -48,9 +49,19 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        $request->validate([
+            'name' => 'required|string',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:6',
+        ]);
 
+        $user = User::create([
+            'email' => $request->email,
+            'name' => $request->name,
+            'password' => password_hash($request->password,null),
+        ]);
+        return redirect()->route('users.index')->with('success', 'User success added');
+    }
     /**
      * Display the specified resource.
      *

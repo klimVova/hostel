@@ -19,7 +19,7 @@
           type="text"
           class="block ml-2 mb-4 w-60"
           v-model="form.search"
-          placeholder="Cari post..."
+          placeholder="Search post..."
         />
         <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
           <div class="flex flex-col">

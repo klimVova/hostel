@@ -27,7 +27,7 @@ class PostController extends Controller
                 $query->where('user_id', $request->user()->id);
             })
                 ->filter($request->only($queries))
-                ->paginate(2)
+                ->paginate(5)
                 ->withQueryString(),
             'filters' => $request->all($queries),
         ]);
@@ -58,7 +58,7 @@ class PostController extends Controller
 
         $request->user()->posts()->create($request->only('title', 'content'));
 
-        return redirect()->route('posts.index')->with('success', 'Post berhasil ditambahkan');
+        return redirect()->route('posts.index')->with('success', 'Post success added');
     }
 
     /**
@@ -99,7 +99,7 @@ class PostController extends Controller
 
         $post->update($request->only('title', 'content'));
 
-        return back()->with('success', 'Post berhasil diubah');
+        return back()->with('success', 'Post success update');
     }
 
     /**
@@ -112,6 +112,6 @@ class PostController extends Controller
     {
         $post->delete();
 
-        return back()->with('success', 'Post berhasil dihapus');
+        return back()->with('success', 'Post  success delete');
     }
 }
