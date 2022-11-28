@@ -26,20 +26,48 @@
         </div>
       </div>
     </div>
+    <div class="mt-5">
+      <div v-if="item">
+        <h4>{{item.title}}</h4>
+        <p>{{item.content}}</p>
+        <div v-for="image in item.images">
+          <img :src="image.url">
+        </div>
+      </div>
+    </div>
   </guest-layout>
 </template>
 
 <script>
 import GuestLayout from "@/Layouts/GuestLayout";
+import Index from "./Item";
+import Dropzone from "dropzone";
 
 export default {
   components: {
     GuestLayout,
+    Index,
   },
 
   props: {
     posts: Object,
   },
+  data(){
+    return{
+      item:null,
+    }
+  },
+  mounted() {
+    this.getItem()
+  },
+  methods:{
+    getItem(){
+      axios.get('/api/items')
+        .then(res => {
+          this.item = res.data.data
+          console.log(this.item.title);
+        })
+    },
+  },
 };
-//console.log(props);
 </script>

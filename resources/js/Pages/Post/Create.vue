@@ -9,14 +9,14 @@
     <div class="py-12">
       <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
         <jet-form-section @submitted="createPost">
-          <template #title> Create Post </template>
+          <template #title> Create Post</template>
 
-          <template #description> Membuat postingan. </template>
+          <template #description> Membuat postingan.</template>
 
           <template #form>
             <!-- Title -->
             <div class="col-span-6 sm:col-span-4">
-              <jet-label for="title" value="Title" />
+              <jet-label for="title" value="Title"/>
               <jet-input
                 id="title"
                 type="text"
@@ -24,18 +24,28 @@
                 v-model="form.title"
                 autocomplete="title"
               />
-              <jet-input-error :message="form.errors.title" class="mt-2" />
+              <jet-input-error :message="form.errors.title" class="mt-2"/>
             </div>
 
             <!-- Content -->
             <div class="col-span-6 sm:col-span-4">
-              <jet-label for="content" value="Content" />
+              <jet-label for="content" value="Content"/>
               <textarea
                 class="mt-1 block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
                 v-model="form.content"
                 rows="10"
               ></textarea>
-              <jet-input-error :message="form.errors.content" class="mt-2" />
+              <jet-input-error :message="form.errors.content" class="mt-2"/>
+            </div>
+            <div class="col-span-6 sm:col-span-4">
+              <jet-label for="content" value="Content"/>
+              <jet-input type="file"
+                         class="mt-1 block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
+                         v-model="form.content"
+                         rows="10"
+                         placeholder="file"
+              ></jet-input>
+              <jet-input-error :message="form.errors.content" class="mt-2"/>
             </div>
           </template>
 
@@ -51,14 +61,14 @@
               Save
             </jet-button>
           </template>
+
         </jet-form-section>
       </div>
     </div>
   </app-layout>
 </template>
-
 <script>
-import { useForm } from "@inertiajs/inertia-vue3";
+import {useForm} from "@inertiajs/inertia-vue3";
 import AppLayout from "@/Layouts/AppLayout";
 import JetButton from "@/Jetstream/Button";
 import JetFormSection from "@/Jetstream/FormSection";
@@ -68,6 +78,7 @@ import JetLabel from "@/Jetstream/Label";
 import JetActionMessage from "@/Jetstream/ActionMessage";
 import JetSecondaryButton from "@/Jetstream/SecondaryButton";
 import JetSelect from "@/Components/Select";
+import Dropzone from "dropzone/dist/dropzone";
 
 export default {
   components: {
@@ -81,7 +92,6 @@ export default {
     JetSecondaryButton,
     JetSelect,
   },
-
   setup() {
     const form = useForm({
       _method: "POST",
@@ -93,7 +103,7 @@ export default {
       form.post(route("posts.store"));
     };
 
-    return { form, createPost };
+    return {form, createPost};
   },
 };
 </script>

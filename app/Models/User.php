@@ -30,6 +30,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'user_id',
     ];
 
     /**
@@ -91,5 +92,8 @@ class User extends Authenticatable
                     ->orWhere('email', 'like', '%' . $search . '%');
             });
         });
+    }
+    public function items(){
+        return $this->hasMany(Item::class, 'user_id','id');
     }
 }

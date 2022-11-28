@@ -37,6 +37,13 @@
                 >
                   Posts
                 </jet-nav-link>
+                <jet-nav-link
+                  :href="route('items.index')"
+                  :active="route().current('items.*')"
+                  v-if="$page.props.permission.posts.viewAny"
+                >
+                  Item
+                </jet-nav-link>
               </div>
             </div>
 

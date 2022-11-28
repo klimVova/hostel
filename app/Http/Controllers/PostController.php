@@ -59,6 +59,7 @@ class PostController extends Controller
         $request->user()->posts()->create($request->only('title', 'content'));
 
         return redirect()->route('posts.index')->with('success', 'Post success added');
+
     }
 
     /**

@@ -1,12 +1,5 @@
 <?php
 
-use App\Http\Controllers\BlogController;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\PostController;
-use App\Http\Controllers\PostShowController;
-use App\Http\Controllers\PostViewController;
-use App\Http\Controllers\SingleController;
-use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -24,9 +17,8 @@ use Inertia\Inertia;
 Route::get('/', HomeController::class)->name('home');
 Route::get('/blog', BlogController::class)->name('blog');
 Route::get('/single/{single}', SingleController::class)->name('single');
-
-
 Route::get('/posts/{post}', PostShowController::class)->name('posts.show');
+
 
 Route::prefix('/admin')->middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/dashboard', function () {
@@ -34,5 +26,6 @@ Route::prefix('/admin')->middleware(['auth:sanctum', 'verified'])->group(functio
     })->name('dashboard');
 
     Route::resource('users', UserController::class);
+    Route::resource('items', ItemController::class);
     Route::resource('posts', PostController::class)->except('show');
 });

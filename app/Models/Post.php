@@ -11,6 +11,7 @@ class Post extends Model
     use HasFactory;
     use HasCan;
 
+    protected $guarded = false;
     protected $fillable = [
         'title',
         'content',
